@@ -1,5 +1,7 @@
 #include "timer.h"
 
+#include <ctime>
+#include <iomanip>
 #include <iostream>
 #include <stdexcept>
 
@@ -50,6 +52,17 @@ void Timer::proceed() {
 
     this->start_point = std::chrono::high_resolution_clock::now();
     this->pause_mark = false;
+}
+
+void Timer::print_current_time() {
+    auto now = std::chrono::system_clock::now();
+    auto duration = now.time_since_epoch();
+    auto millis = std::chrono::duration_cast<std::chrono::milliseconds>(duration);
+    std::time_t seconds = std::chrono::system_clock::to_time_t(now);
+    std::tm* timeinfo = std::localtime(&seconds);
+
+    std::cout << "Current date and time: " << std::put_time(timeinfo, "%Y-%m-%d %H:%M:%S.")
+              << std::setfill('0') << std::setw(3) << millis.count() % 1000 << "\n";
 }
 
 float Timer::result_ms() {

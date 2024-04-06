@@ -17,3 +17,5 @@
 * result_ms()
   * get timing result, whose unit is ms.
 
+* print_current_time()
+  * print current time, including date, hour, min, sec and millisecond

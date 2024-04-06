@@ -17,6 +17,7 @@ class Timer {
     void end();
     void pause();
     void proceed();
+    void print_current_time();
     float result_ms();
 };
 
